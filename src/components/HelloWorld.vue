@@ -10,12 +10,11 @@
 
     <div class="plant-list">
       <div v-for="plant in plants" :key="plant.id" class="plant-card">
-        <img :src="plant.image" :alt="plant.name" class="plant-image" @click="$router.push(plant.route)" />
         <div class="plant-info">
           <h3 class="plant-name">{{ plant.name }}</h3>
           <p class="learn-label">Click to learn more:</p>
-          <button class="play-btn" @click="openLink(plant.link)">&#9654;</button>
-          <div class="found-row">
+        <img :src="plant.image" :alt="plant.name" class="plant-image" @click="$router.push(plant.route)" />
+        <div class="found-row">
             <label>Found it: <input type="checkbox" v-model="plant.found" /></label>
           </div>
         </div>
@@ -122,8 +121,8 @@ h1 {
 }
 
 .plant-image {
-  width: 120px;
-  height: 120px;
+  width: 360px;
+  height: 360px;
   object-fit: cover;
   flex-shrink: 0;
   cursor: pointer;
@@ -146,22 +145,6 @@ h1 {
   font-size: 13px;
   margin: 0 0 6px;
   color: #333;
-}
-
-.play-btn {
-  background: #C85A17;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  padding: 0;
 }
 
 .play-btn:hover {
