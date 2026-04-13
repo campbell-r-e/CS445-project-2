@@ -1,4 +1,4 @@
-# project2 hello this is a test from cole
+# project2
 
 ## Project setup
 ```
