@@ -3,6 +3,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import ConeflowerPage from './components/ConeflowerPage.vue'
 import RedbudPage from './components/RedbudPage.vue'
 import MaplePage from './components/MaplePage.vue'
+import MapPage from './components/MapPage.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/plant/maple',
     name: 'MaplePage',
     component: MaplePage
+  },
+  {
+    path: '/map',
+    name: 'MapPage',
+    component: MapPage
   }
 ]
 
