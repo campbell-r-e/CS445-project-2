@@ -18,10 +18,10 @@
       <div v-for="plant in plants" :key="plant.id" class="plant-card">
         <div class="plant-info">
           <h3 class="plant-name">{{ plant.name }}</h3>
-          <p class="learn-label">Click to learn more:</p>
+          <p class="learn-label">&#128205; Click to learn more:</p>
         <img :src="plant.image" :alt="plant.name" class="plant-image" @click="$router.push(plant.route)" />
         <div class="found-row">
-            <label>Found it: <input type="checkbox" v-model="plant.found" @change="onFoundChange(plant)" /></label>
+            <label class="found-label"><strong>Found it:</strong> <input type="checkbox" v-model="plant.found" @change="onFoundChange(plant)" /></label>
             <div v-if="plant.showSelected" class="selected-toast">&#10003; Selected!</div>
           </div>
         </div>
@@ -34,33 +34,34 @@
 export default {
   name: 'HelloWorld',
   data() {
+    const saved = JSON.parse(localStorage.getItem('plantFound') || '{}')
     return {
       plants: [
         {
           id: 1,
           name: 'Eastern Purple Coneflower',
-          image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Echinacea_purpurea_Grandview_Prairie.jpg/400px-Echinacea_purpurea_Grandview_Prairie.jpg',
+          image: new URL('../assets/coneflower.jpg', import.meta.url).href,
           link: 'https://en.wikipedia.org/wiki/Echinacea_purpurea',
           route: '/plant/coneflower',
-          found: false,
+          found: !!saved[1],
           showSelected: false
         },
         {
           id: 2,
           name: 'Eastern Redbud',
-          image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/RedbudOhio02.jpg/400px-RedbudOhio02.jpg',
+          image: new URL('../assets/redbud.jpg', import.meta.url).href,
           link: 'https://en.wikipedia.org/wiki/Cercis_canadensis',
           route: '/plant/redbud',
-          found: false,
+          found: !!saved[2],
           showSelected: false
         },
         {
           id: 3,
           name: 'Sugar Maple',
-          image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Acer_saccharum_1-jgreenlee_%285098070608%29.jpg/400px-Acer_saccharum_1-jgreenlee_%285098070608%29.jpg',
+          image: new URL('../assets/maple.jpg', import.meta.url).href,
           link: 'https://en.wikipedia.org/wiki/Acer_saccharum',
           route: '/plant/maple',
-          found: false,
+          found: !!saved[3],
           showSelected: false
         }
       ]
@@ -70,7 +71,13 @@ export default {
     openLink(url) {
       window.open(url, '_blank')
     },
+    saveFound() {
+      const saved = {}
+      this.plants.forEach(p => { saved[p.id] = p.found })
+      localStorage.setItem('plantFound', JSON.stringify(saved))
+    },
     onFoundChange(plant) {
+      this.saveFound()
       if (plant.found) {
         plant.showSelected = true
         setTimeout(() => {
@@ -162,9 +169,14 @@ h1 {
 }
 
 .learn-label {
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 700;
   margin: 0 0 6px;
-  color: #333;
+  color: #C85A17;
+}
+
+.found-label {
+  font-size: 14px;
 }
 
 .play-btn:hover {

@@ -1,7 +1,7 @@
 <template>
   <div class="plant-page">
     <button class="back-btn" @click="$router.push('/')">&#8592; Back</button>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/RedbudOhio02.jpg/400px-RedbudOhio02.jpg" alt="Eastern Redbud" class="plant-image" />
+    <img :src="redbudImg" alt="Eastern Redbud" class="plant-image" />
     <h1>Eastern Redbud</h1>
     <p class="sci-name">Cercis canadensis</p>
 
@@ -27,7 +27,12 @@
 
 <script>
 export default {
-  name: 'RedbudPage'
+  name: 'RedbudPage',
+  data() {
+    return {
+      redbudImg: new URL('../assets/redbud.jpg', import.meta.url).href
+    }
+  }
 }
 </script>
 

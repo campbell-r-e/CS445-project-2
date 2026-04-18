@@ -1,7 +1,7 @@
 <template>
   <div class="plant-page">
     <button class="back-btn" @click="$router.push('/')">&#8592; Back</button>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Acer_saccharum_1-jgreenlee_%285098070608%29.jpg/400px-Acer_saccharum_1-jgreenlee_%285098070608%29.jpg" alt="Sugar Maple" class="plant-image" />
+    <img :src="mapleImg" alt="Sugar Maple" class="plant-image" />
     <h1>Sugar Maple</h1>
     <p class="sci-name">Acer saccharum</p>
 
@@ -27,7 +27,12 @@
 
 <script>
 export default {
-  name: 'MaplePage'
+  name: 'MaplePage',
+  data() {
+    return {
+      mapleImg: new URL('../assets/maple.jpg', import.meta.url).href
+    }
+  }
 }
 </script>
 

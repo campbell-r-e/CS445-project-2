@@ -1,7 +1,7 @@
 <template>
   <div class="plant-page">
     <button class="back-btn" @click="$router.push('/')">&#8592; Back</button>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Echinacea_purpurea_Grandview_Prairie.jpg/400px-Echinacea_purpurea_Grandview_Prairie.jpg" alt="Eastern Purple Coneflower" class="plant-image" />
+    <img :src="coneflowerImg" alt="Eastern Purple Coneflower" class="plant-image" />
     <h1>Eastern Purple Coneflower</h1>
     <p class="sci-name">Echinacea purpurea</p>
 
@@ -27,7 +27,12 @@
 
 <script>
 export default {
-  name: 'ConeflowerPage'
+  name: 'ConeflowerPage',
+  data() {
+    return {
+      coneflowerImg: new URL('../assets/coneflower.jpg', import.meta.url).href
+    }
+  }
 }
 </script>
 
